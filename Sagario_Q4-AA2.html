@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Form</title>
+  <style>
+    body {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      margin: 300px;
+      padding: 0;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #2c1d1d;
+    }
+    form {
+      width: 400px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+      width: 100%;
+      background-color: #ffb4cb;
+      color: #ca5075;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 18px;
+    }
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background-color: #ca5075;
+      color: wheat;
+    }
+    .output {
+      margin-top: 20px;
+    }
+    .output p {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .red-border {
+      border: 1px solid red !important;
+    }
+    .green-border {
+      border: 1px solid green !important;
+    }
+    div {
+      color: #ca5075;
+      margin: 50px;
+      padding: 20px;
+      background-color: #ffb4cbe0;
+      border-radius: 10px;
+      border-color: white;
+      border-width: 4px;
+      border-style: solid;
+    }
+    .output {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body background="bg_pic.jpg">
+  <form id="signup-form">
+    <fieldset>
+      <legend>Sign-Up ౨ৎ ⋆｡˚ </legend>
+      <label for="name">Name:</label>
+      <input type="text" id="name" onblur="addRedBorder(this)" onfocus="removeBorder(this)">
+      
+      <label for="username">Preferred Username:</label>
+      <input type="text" id="username" onblur="addRedBorder(this)" onfocus="removeBorder(this)">
+      
+      <label for="gender">Gender:</label>
+      <select id="gender" onblur="addRedBorder(this)" onfocus="removeBorder(this)">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="prefer not to mention">Prefer not to mention</option>
+      </select>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" onblur="addRedBorder(this)" onfocus="removeBorder(this)">
+      
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" onblur="addRedBorder(this)" onfocus="removeBorder(this)">
+      
+      <label for="address">Address:</label>
+      <textarea id="address" rows="4" onblur="addRedBorder(this)" onfocus="removeBorder(this)"></textarea>
+      
+      <label for="interest">Interests:</label>
+      <textarea id="interest" rows="4" onblur="addRedBorder(this)" onfocus="removeBorder(this)"></textarea>
+    </fieldset>
+    
+    <input type="submit" value="𐙚 Submit">
+    <input type="reset" value="𐙚 Reset">
+  </form>
+  
+  <div id="userInfo" style="text-align: center;">
+    <h2>⊹ ‧₊˚ ౨ৎ User Information:</h2>
+    <div id="output"></div>
+  </div>
+  
+  <script>
+    function addRedBorder(element) {
+      if (element.value.trim() === '') {
+        element.classList.add('red-border');
+      } else {
+        element.classList.remove('red-border');
+        element.classList.add('green-border');
+      }
+    }
+
+    function removeBorder(element) {
+      element.classList.remove('red-border');
+    }
+
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const username = document.getElementById('username').value;
+      const gender = document.getElementById('gender').value;
+      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const interest = document.getElementById('interest').value;
+
+      if (name && username && gender && password && email && address && interest) {
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = `
+          <p>Name: ${name}</p>
+          <p>Preferred Username: ${username}</p>
+          <p>Gender: ${gender}</p>
+          <p>Password: ${'*'.repeat(password.length)}</p>
+          <p>Email Address: ${email}</p>
+          <p>Address: ${address}</p>
+          <p>Interests: ${interest}</p>
+        `;
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+
+    document.querySelector('input[type="reset"]').addEventListener('click', function() {
+      document.getElementById('output').innerHTML = '';
+    });
+  </script>
+</body>
+</html>
